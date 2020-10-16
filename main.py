@@ -39,8 +39,17 @@ async def 급식(ctx, m, d):
         embed.set_thumbnail(url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
         await ctx.send(embed=embed)
         return None
+    try:
+        allergyList = html.find("div", {"class":"Schoolmeal_Cont_Cont_Cont"}).text
+    except:
+        embed = discord.Embed(title=f':spoon: 정발고 {m}월 {d}일 급식표', description=f'{lunchList}', color=0xababab)
+        embed.set_thumbnail(url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
+        await ctx.send(embed=embed)
+        return None
 
-    embed = discord.Embed(title=f':ticket: 정발고 {m}월 {d}일 급식표', description=f'{lunchList}', color=0xababab)
+
+    embed = discord.Embed(title=f':spoon: 정발고 {m}월 {d}일 급식표', description=f'{lunchList}', color=0xababab)
+    embed.add_field(name=':bulb: 알레르기 정보', value=allergyList, inline=True)
     embed.set_thumbnail(url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
     await ctx.send(embed=embed)
 
