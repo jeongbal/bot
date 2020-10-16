@@ -30,10 +30,11 @@ async def 급식(ctx, m, d):
     con = req.content
     html = BeautifulSoup(con, "html.parser")
 
+
     try:
         lunchList = html.find("div", {"class": "Schoolmeal_Cont_Cont_Cont"}).text
     except:
-        embed = discord.Embed(title=f':ticket: 정발고 {m}월 {d}일 급식표',
+        embed = discord.Embed(title=f':warning: 정발고 {m}월 {d}일 급식표',
                               description='불러오지 못했습니다.\n날짜가 주말이거나 급식이 나오지 않는 날인지 확인해주세요.', color=0xababab)
         embed.set_thumbnail(url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
         await ctx.send(embed=embed)
