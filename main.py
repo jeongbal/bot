@@ -17,7 +17,8 @@ async def on_ready():
 async def 명령어(ctx):
     embed = discord.Embed(title=':ticket: 정발고 급식봇 명령어 목록', color=0xababab)
     embed.set_thumbnail(url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
-    embed.add_field(name='정발고 급식 M D', value='M월 D일의 급식표를 불러옵니다.', inline=True)
+    embed.add_field(name=' - 정발고 급식 M D', value='M월 D일의 급식표를 불러옵니다.', inline=False)
+    embed.add_field(name=' - 정발고 초대', value='이 봇의 초대 링크를 불러옵니다.', inline=False)
     await ctx.send(embed=embed)
 
 
@@ -52,6 +53,10 @@ async def 급식(ctx, m, d):
     embed.add_field(name=':bulb: 알레르기 정보', value=allergyList, inline=True)
     embed.set_thumbnail(url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
     await ctx.send(embed=embed)
+
+@bot.command()
+async def 초대(ctx):
+    await ctx.send('https://discord.com/oauth2/authorize?client_id=766501550687387659&scope=bot&permissions=2146954615')
 
 
 bot.run(os.environ['token'])
