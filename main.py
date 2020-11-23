@@ -59,4 +59,4 @@ async def 초대(ctx):
     await ctx.send('https://discord.com/oauth2/authorize?client_id=766501550687387659&scope=bot&permissions=2146954615')
 
 
-bot.run(os.environ['token'])
+bot.run('NzY1NTU3MTM3ODMyNTQyMjA4.X4WipQ.I2m8RG7rsw9_Z63cPAMv7yeD58o')
