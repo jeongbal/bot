@@ -107,6 +107,13 @@ async def 오늘급식(ctx):
 
 
 @bot.command()
+async def 시간표(ctx):
+    embed = discord.Embed()
+    embed.set_image(url="http://vz.kro.kr/sigan.php?text={"월":["한국사","국어","통과","가정","수학","기술","영어"],"화":["체육","진로","정보","통과","영어","통사","한국사"],"수":["통과","국어","수학","사회","창체","창체","창체"],"목":["미술","미술","과탐실","체육","수학","통사","진로"],"금":["통과","한국사","수학","영어","정보","정보","영어"]}")
+    await ctx.send(embed=embed)
+
+
+@bot.command()
 async def 초대(ctx):
     await ctx.send('https://discord.com/oauth2/authorize?client_id=766501550687387659&scope=bot&permissions=2146954615')
 
