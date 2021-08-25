@@ -65,7 +65,7 @@ async def 급식(ctx, m, d):
     await ctx.send(embed=embed)
 
 
-@bot.command()
+@bot.command(aliases=["ㄳ", "ㄱㅅ"])
 async def 오늘급식(ctx):
     await ctx.send('불러오는 중...')
 
