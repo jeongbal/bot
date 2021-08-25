@@ -5,25 +5,25 @@ from bs4 import BeautifulSoup
 import os
 import datetime
 
-bot = commands.Bot(command_prefix='정발고 ')
+bot = commands.Bot(command_prefix='밥 ')
 
 
 @bot.event
 async def on_ready():
     print('봇 온라인.')
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game('"정발고 명령어" 입력'))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game('"밥 명령어" 입력'))
 
 
 @bot.command()
 async def 명령어(ctx):
-    embed = discord.Embed(title=':ticket: 정발고 급식봇 명령어 목록', color=0xababab)
+    embed = discord.Embed(title=':ticket: 급식봇 명령어 목록', color=0xababab)
     embed.set_thumbnail(
         url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
-    embed.add_field(name=' - 정발고 급식 M D',
+    embed.add_field(name=' - 밥 급식 M D',
                     value='M월 D일의 급식표를 불러옵니다.', inline=False)
-    embed.add_field(name=' - 정발고 오늘급식',
+    embed.add_field(name=' - 밥 오늘급식',
                     value='오늘의 급식표를 불러옵니다.', inline=False)
-    embed.add_field(name=' - 정발고 초대', value='이 봇의 초대 링크를 불러옵니다.', inline=False)
+    embed.add_field(name=' - 밥 초대', value='이 봇의 초대 링크를 불러옵니다.', inline=False)
     await ctx.send(embed=embed)
 
 
@@ -40,7 +40,7 @@ async def 급식(ctx, m, d):
         lunchList = html.find(
             "div", {"class": "Schoolmeal_Cont_Cont_Cont"}).text
     except:
-        embed = discord.Embed(title=f':warning: 정발고 {m}월 {d}일 급식표',
+        embed = discord.Embed(title=f':warning: {m}월 {d}일 급식표',
                               description='불러오지 못했습니다.\n날짜가 주말이거나 급식이 나오지 않는 날인지 확인해주세요.', color=0xababab)
         embed.set_thumbnail(
             url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
@@ -51,14 +51,14 @@ async def 급식(ctx, m, d):
         allergyList = cont2[1].text
     except:
         embed = discord.Embed(
-            title=f':spoon: 정발고 {m}월 {d}일 급식표', description=f'{lunchList}', color=0xababab)
+            title=f':spoon: {m}월 {d}일 급식표', description=f'{lunchList}', color=0xababab)
         embed.set_thumbnail(
             url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
         await ctx.send(embed=embed)
         return None
 
     embed = discord.Embed(
-        title=f':spoon: 정발고 {m}월 {d}일 급식표', description=f'{lunchList}', color=0xababab)
+        title=f':spoon: {m}월 {d}일 급식표', description=f'{lunchList}', color=0xababab)
     embed.add_field(name=':bulb: 알레르기 정보', value=allergyList, inline=True)
     embed.set_thumbnail(
         url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
@@ -81,7 +81,7 @@ async def 오늘급식(ctx):
         lunchList = html.find(
             "div", {"class": "Schoolmeal_Cont_Cont_Cont"}).text
     except:
-        embed = discord.Embed(title=f':warning: 정발고 {m}월 {d}일 급식표',
+        embed = discord.Embed(title=f':warning: {m}월 {d}일 급식표',
                               description='불러오지 못했습니다.\n오늘이 주말이거나 급식이 나오지 않는 날인지 확인해주세요.', color=0xababab)
         embed.set_thumbnail(
             url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
@@ -92,14 +92,14 @@ async def 오늘급식(ctx):
         allergyList = cont2[1].text
     except:
         embed = discord.Embed(
-            title=f':spoon: 정발고 {m}월 {d}일 급식표', description=f'{lunchList}', color=0xababab)
+            title=f':spoon: {m}월 {d}일 급식표', description=f'{lunchList}', color=0xababab)
         embed.set_thumbnail(
             url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
         await ctx.send(embed=embed)
         return None
 
     embed = discord.Embed(
-        title=f':spoon: 정발고 {m}월 {d}일 급식표', description=f'{lunchList}', color=0xababab)
+        title=f':spoon: {m}월 {d}일 급식표', description=f'{lunchList}', color=0xababab)
     embed.add_field(name=':bulb: 알레르기 정보', value=allergyList, inline=True)
     embed.set_thumbnail(
         url='http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg')
