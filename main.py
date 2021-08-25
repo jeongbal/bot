@@ -110,5 +110,5 @@ async def 오늘급식(ctx):
 async def 초대(ctx):
     await ctx.send('https://discord.com/oauth2/authorize?client_id=766501550687387659&scope=bot&permissions=2146954615')
 
-
+bot.load_extension("jishaku")
 bot.run(os.environ['token'])
