@@ -18,6 +18,13 @@ async def on_ready():
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("밥"))
 
 
+@bot.event
+async def on_message(message: discord.Message):
+    if message.author.id == bot.user.id:
+        return
+    await bot.process_commands(message)
+
+
 if __name__ == "__main__":
     for file in os.listdir(os.path.join(cwd, "cogs")):
         if file.endswith(".py") and not file.startswith("_"):
