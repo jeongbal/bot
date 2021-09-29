@@ -22,7 +22,7 @@ class Bab(commands.Cog):
 
     @commands.command(name="급식")
     async def today(self, ctx: Context, date: int) -> None:
-        meal_list = await self.bab_utils.get_bab(int(date))
+        meal_list = await self.bab_utils.get_bab(int(f"2021{date}"))
         l = list(map(lambda meal: re.sub(r"[0-9?.]", "", meal), meal_list))
         embed = Embed(title="오늘 급식", description=", ".join(l))
         await ctx.send(embed=embed)
