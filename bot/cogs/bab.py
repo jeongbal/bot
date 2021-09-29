@@ -1,0 +1,25 @@
+from datetime import datetime, timezone
+
+from discord.embeds import Embed
+from discord.ext import commands
+from discord.ext.commands.context import Context
+from utils.bab import BabUtil
+import re
+
+
+class Bab(commands.Cog):
+    def __init__(self, bot) -> None:
+        self.bot = bot
+        self.bab_utils = BabUtil(self.bot.neis)
+
+    @commands.command(name="오늘", aliases=["ㅇㄴ"])
+    async def today(self, ctx: Context) -> None:
+        date = datetime.now(timezone.utc).astimezone().strftime("%Y%m%d")
+        meal_list = await self.bab_utils.get_bab(int(date))
+        l = list(map(lambda meal: re.sub(r"[0-9?.]", "", meal), meal_list))
+        embed = Embed(title="오늘 급식", description=", ".join(l))
+        await ctx.send(embed=embed)
+
+
+def setup(bot):
+    bot.add_cog(Bab(bot))
