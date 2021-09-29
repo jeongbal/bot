@@ -17,18 +17,6 @@ async def on_ready():
 
 
 @bot.command()
-async def 명령어(ctx):
-    embed = discord.Embed(title=":ticket: 급식봇 명령어 목록", color=0xABABAB)
-    embed.set_thumbnail(
-        url="http://www.jeongbal.hs.kr/upload/2018/09/04/3ae8ad2fe586c0f6449248bbab811998.jpg"
-    )
-    embed.add_field(name=" - 밥 급식 M D", value="M월 D일의 급식표를 불러옵니다.", inline=False)
-    embed.add_field(name=" - 밥 오늘급식", value="오늘의 급식표를 불러옵니다.", inline=False)
-    embed.add_field(name=" - 밥 초대", value="이 봇의 초대 링크를 불러옵니다.", inline=False)
-    await ctx.send(embed=embed)
-
-
-@bot.command()
 async def 급식(ctx, m, d):
     await ctx.send("불러오는 중...")
 
