@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import os
 from pathlib import Path
+from neispy import Client
 
 
 token = os.getenv("token")
@@ -9,6 +10,7 @@ bot = commands.bot.Bot(command_prefix="밥 ")
 cwd = Path(__file__).parents[0]
 cwd = str(cwd)
 bot.cwd = cwd
+bot.neis = Client(KEY=os.getenv("neis"))
 
 
 @bot.event
