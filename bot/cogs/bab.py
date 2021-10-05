@@ -21,7 +21,7 @@ class Bab(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name="내일")
-    async def tomorrow(self, ctx: Context, date: int) -> None:
+    async def tomorrow(self, ctx: Context) -> None:
         date = datetime.now(timezone.utc).astimezone().strftime("%Y%m%d")
         meal_list = await self.bab_utils.get_bab(int(date) + 1)
         l = list(map(lambda meal: re.sub(r"[0-9?.]", "", meal), meal_list))
