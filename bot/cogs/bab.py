@@ -23,7 +23,7 @@ class Bab(commands.Cog):
     @commands.command(name="내일")
     async def tomorrow(self, ctx: Context) -> None:
         date = datetime.now(timezone.utc).astimezone().strftime("%Y%m%d")
-        meal_list = await self.bab_utils.get_bab(int(date) + 1)
+        meal_list = await self.bab_utils.get_bab(int(date) + 1)  # TODO : a
         l = list(map(lambda meal: re.sub(r"[0-9?.]", "", meal), meal_list))
         embed = Embed(title="내일 급식", description=", ".join(l))
         await ctx.send(embed=embed)
