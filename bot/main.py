@@ -1,12 +1,12 @@
 import discord
 import os
 from pathlib import Path
-from neispy import Client
-from bot.bot import BBot
+from discord.ext.commands.bot import Bot
+from neispy.client import Client
 
 
 token = os.getenv("token")
-bot = BBot(command_prefix="밥 ")
+bot = Bot(command_prefix="밥 ")
 cwd = Path(__file__).parents[0]
 cwd = str(cwd)
 bot.cwd = cwd
