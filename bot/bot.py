@@ -23,7 +23,7 @@ def load_cogs(bot: JeongBalBot) -> None:
             .replace(".py", "")
             .replace("\\", ".")
             .replace("/", "."),
-            filter(lambda path: not path.startwith("__"), glob("./bot/cogs/*")),
+            filter(lambda path: "__" not in path, glob("./bot/cogs/*")),
         )
     )
 
