@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from typing import List, Literal, Optional, Union
+from typing import List, Optional
 from pytz import timezone
 
 from neispy import Neispy
