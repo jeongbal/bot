@@ -19,7 +19,7 @@ class Neis:
 
     async def get_meal(self, date: str) -> List[str]:
         scmeal = await self.neis.mealServiceDietInfo(AE, SE, MLSV_YMD=date)
-        return scmeal[0].DDISM_NM.split("<br/>")
+        return scmeal[0].DDISH_NM.split("<br/>")
 
     async def get_schedule(self, date: str) -> str:
         scschedule = await self.neis.SchoolSchedule(AE, SE, AA_YMD=int(date))
