@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from typing import List, Optional
 from pytz import timezone
+from re import sub
 
 from neispy import Neispy
 from discord.embeds import Embed
@@ -19,7 +20,8 @@ class Neis:
 
     async def get_meal(self, date: str) -> List[str]:
         scmeal = await self.neis.mealServiceDietInfo(AE, SE, MLSV_YMD=date)
-        return scmeal[0].DDISH_NM.split("<br/>")
+        l = scmeal[0].DDISH_NM.split("<br/>")
+        return list(map(lambda menu: sub(r"[0-9?.]", "", menu), l))
 
     async def get_schedule(self, date: str) -> str:
         scschedule = await self.neis.SchoolSchedule(AE, SE, AA_YMD=int(date))
