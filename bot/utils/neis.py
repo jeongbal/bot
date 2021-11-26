@@ -43,7 +43,6 @@ class Neis:
         sctime_table = await self.neis.hisTimetable(
             AE, SE, TI_FROM_YMD=date, TI_TO_YMD=date, GRADE=grade, CLASS_NM=class_nm
         )
-        print(sctime_table)
         return [info.ITRT_CNTNT for info in sctime_table]
 
     async def meal_embed(self, date: Optional[str]) -> Embed:
