@@ -18,6 +18,18 @@ class Neis:
     async def close(self):
         await self.neis.session.close()
 
+    @staticmethod
+    def handle_date(date: Optional[str]) -> str:
+        if not date:
+            return datetime.now(tz=SEOUL).strftime("%Y%m%d")
+        if date == "내일":
+            return (datetime.now(tz=SEOUL) + timedelta(days=1)).strftime("%Y%m%d")
+        elif date == "어제":
+            return (datetime.now(tz=SEOUL) - timedelta(days=1)).strftime(
+                "%Y%m%d"
+            )  # TODO: 3.10 Switch
+        return date
+
     async def get_meal(self, date: str) -> List[str]:
         scmeal = await self.neis.mealServiceDietInfo(AE, SE, MLSV_YMD=date)
         l = scmeal[0].DDISH_NM.split("<br/>")
@@ -35,12 +47,7 @@ class Neis:
         return [info.ITRT_CNTNT for info in sctime_table]
 
     async def meal_embed(self, date: Optional[str]) -> Embed:
-        if not date:
-            date = datetime.now(tz=SEOUL).strftime("%Y%m%d")
-
-        if date == "내일":
-            date = (datetime.now(tz=SEOUL) + timedelta(days=1)).strftime("%Y%m%d")
-
+        date = self.handle_date(date)
         meal = await self.get_meal(date)
         return Embed(
             title=f"{date[4:6]}월 {date[6:9]}일 급식 정보", description=", ".join(meal)
