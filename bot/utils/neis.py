@@ -52,3 +52,18 @@ class Neis:
         return Embed(
             title=f"{date[4:6]}월 {date[6:9]}일 급식 정보", description=", ".join(meal)
         )
+
+    async def schedule_embed(self, date: Optional[str]) -> Embed:
+        date = self.handle_date(date)
+        schedule = await self.get_schedule(date)
+        return Embed(title=f"{date[4:6]}월 {date[6:9]}일 학사일정 정보", description=schedule)
+
+    async def time_table_embed(
+        self, grade: int, class_nm: int, date: Optional[str]
+    ) -> Embed:
+        date = self.handle_date(date)
+        time_table = await self.get_time_table(grade, class_nm, date)
+        return Embed(
+            title=f"{date[4:6]}월 {date[6:9]}일 {grade}학년 {class_nm}반 시간표",
+            description=", ".join(time_table),
+        )
