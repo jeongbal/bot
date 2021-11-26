@@ -10,23 +10,23 @@ SE = "7530119"
 SEOUL = timezone("Asia/Seoul")
 
 
-class Neis(Neispy):
-    def __init__(self, key: Optional[str]) -> None:
-        super().__init__(self, key=key)
+class Neis:
+    def __init__(self, neis: Neispy) -> None:
+        self.neis = neis
 
     async def close(self):
-        await self.session.close()
+        await self.neis.session.close()
 
     async def get_meal(self, date: str) -> List[str]:
-        scmeal = await self.mealServiceDietInfo(AE, SE, MLSV_YMD=date)
+        scmeal = await self.neis.mealServiceDietInfo(AE, SE, MLSV_YMD=date)
         return scmeal[0].DDISM_NM.split("<br/>")
 
     async def get_schedule(self, date: str) -> str:
-        scschedule = await self.SchoolSchedule(AE, SE, AA_YMD=int(date))
+        scschedule = await self.neis.SchoolSchedule(AE, SE, AA_YMD=int(date))
         return scschedule[0].EVENT_NM
 
     async def get_time_table(self, grade: int, class_nm: int, date: str) -> List[str]:
-        sctime_table = await self.hisTimetable(
+        sctime_table = await self.neis.hisTimetable(
             AE, SE, TI_FROM_YMD=date, TI_TO_YMD=date, GRADE=grade, CLASS_NM=class_nm
         )
         return [info["ITRT_CNTNT"] for info in sctime_table["hisTimetable"][1]["row"]]
