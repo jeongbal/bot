@@ -15,12 +15,20 @@ class NeisCog(Cog):
 
     @commands.command(name="밥")
     async def bab(self, ctx: Context, date: Optional[str]) -> None:
+        """
+        해당 날짜의 급식 정보를 보여줍니다.
+        인자값: `..밥 [어제/오늘/내일/20211229](선택)`
+        """
         msg = await ctx.send(embed=pleaseWait)
         embed = await self.neis.meal_embed(date)
         await msg.edit(embed=embed)
 
     @commands.command(name="학사일정")
     async def schedule(self, ctx: Context, date: Optional[str]) -> None:
+        """
+        해당 날짜의 학사일정을 보여줍니다.
+        인자값: `..학사일정 [어제/오늘/내일/20211229](선택)`
+        """
         msg = await ctx.send(embed=pleaseWait)
         embed = await self.neis.schedule_embed(date)
         await msg.edit(embed=embed)
@@ -29,6 +37,10 @@ class NeisCog(Cog):
     async def time_table(
         self, ctx: Context, grade: int, class_nm: int, date: Optional[str]
     ) -> None:
+        """
+        해당 날짜의 시간표를 보여줍니다.
+        인자값: `..학사일정 [학년](필수) [반](필수) [어제/오늘/내일/20211229](선택)`
+        """
         msg = await ctx.send(embed=pleaseWait)
         embed = await self.neis.time_table_embed(grade, class_nm, date)
         await msg.edit(embed=embed)
