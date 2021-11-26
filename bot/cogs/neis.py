@@ -6,6 +6,7 @@ from discord.embeds import Embed
 
 from bot.bot import JeongBalBot
 from bot.utils.neis import Neis
+from bot.utils.embeds import pleaseWait
 
 
 class NeisCog(Cog):
@@ -15,7 +16,7 @@ class NeisCog(Cog):
 
     @commands.command(name="밥")
     async def bab(self, ctx: Context, date: Optional[str]) -> None:
-        msg = await ctx.send(embed=Embed(title="정보를 불러오는 중.."))
+        msg = await ctx.send(embed=pleaseWait)
         embed = await self.neis.meal_embed(date)
         await msg.edit(embed=embed)
 
