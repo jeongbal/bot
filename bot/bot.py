@@ -2,14 +2,13 @@ from typing import Optional
 from glob import glob
 
 from discord.ext.commands import Bot
-
-from utils.neis import Neis
+from neispy import Neispy
 
 
 class JeongBalBot(Bot):
     def __init__(self, command_prefix: str, neis_token: str, **options) -> None:
         super().__init__(command_prefix, help_command=None, **options)
-        self.neis = Neis(neis_token)
+        self.neis = Neispy(KEY=neis_token)
 
     async def close(self) -> None:
         await self.neis.close()
