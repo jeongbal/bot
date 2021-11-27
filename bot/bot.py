@@ -4,13 +4,19 @@ from glob import glob
 from discord.ext.commands import Bot
 from neispy import Neispy
 
+from bot.utils.database.mongo import Mongo
+
 
 class JeongBalBot(Bot):
-    def __init__(self, command_prefix: str, neis_token: str, **options) -> None:
+    def __init__(
+        self, command_prefix: str, neis_token: str, mongo_url: str, **options
+    ) -> None:
         super().__init__(command_prefix, help_command=None, **options)
         self.neis = Neispy(KEY=neis_token)
+        self.mongo = Mongo(mongo_url)
 
     async def close(self) -> None:
+        self.mongo.close()
         await self.neis.close()
         await super().close()
 
@@ -34,9 +40,7 @@ def load_cogs(bot: JeongBalBot) -> None:
             print(e)
 
 
-def run(token: Optional[str], neis_token: Optional[str]) -> None:
-    if not (token or neis_token):
-        raise ValueError("Token was not found.")
-    bot = JeongBalBot(command_prefix="..", neis_token=neis_token)
+def run(token: str, neis_token: str, mongo_url: str) -> None:
+    bot = JeongBalBot(command_prefix="..", neis_token=neis_token, mongo_url=mongo_url)
     load_cogs(bot)
     bot.run(token)
