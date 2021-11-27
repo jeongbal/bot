@@ -7,6 +7,9 @@ class Mongo:
         self.__client = AsyncIOMotorClient(mongo_url)
         self.__user_class = self.__client.jbot.user_class
 
+    def close(self) -> None:
+        self.__client.close()
+
     async def get_user(self, user_id: int) -> Dict[str, int]:
         return self.__user_class.find_one({"user_id": user_id})
 
