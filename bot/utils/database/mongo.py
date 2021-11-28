@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 from motor.motor_asyncio import AsyncIOMotorClient
 
 
@@ -10,7 +10,7 @@ class Mongo:
     def close(self) -> None:
         self.__client.close()
 
-    async def get_user(self, user_id: int) -> Dict[str, int]:
+    async def get_user(self, user_id: int) -> Optional[Dict[str, int]]:
         return self.__user_class.find_one({"user_id": user_id})
 
     async def set_user(self, user_id: int, grade: int, class_nm: int) -> bool:
