@@ -1,5 +1,6 @@
 aiohttp==3.7.4.post0
 black==21.11b1
+dnspython==2.1.0
 jishaku==2.3.0
 motor==2.5.1
 neispy==4.0.0
