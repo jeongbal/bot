@@ -6,12 +6,14 @@ from discord.ext.commands.context import Context
 from bot.bot import JeongBalBot
 from bot.utils.neis import Neis
 from bot.utils.embeds import pleaseWait
+from bot.utils.user import User
 
 
 class NeisCog(Cog):
     def __init__(self, bot: JeongBalBot) -> None:
         self.bot = bot
         self.neis = Neis(self.bot.neis)
+        self.user = User(self.bot.mongo)
 
     @commands.command(name="밥")
     async def bab(self, ctx: Context, date: Optional[str]) -> None:
@@ -46,7 +48,16 @@ class NeisCog(Cog):
         인자값: `..학사일정 [학년](필수) [반](필수) [어제/오늘/내일/20211229](선택)`
         """
         msg = await ctx.send(embed=pleaseWait)
-        embed = await self.neis.time_table_embed(grade, class_nm, date)
+        if (grade is None) == (class_nm is None):
+            user_data = await self.user.get_user_class(ctx.author.id)
+        elif (grade is None) != (class_nm is None):
+            await ctx.send(
+                "인자값이 부족합니다. `..help`를 입력하여 명령어 사용법을 확인할 수 있습니다.", delete_after=5
+            )
+            return
+        embed = await self.neis.time_table_embed(
+            user_data["grade"], user_data["class_nm"], date
+        )
         await msg.edit(embed=embed)
 
 
