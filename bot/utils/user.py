@@ -7,5 +7,8 @@ class User:
         self.mongo = mongo
 
     async def set_class_embed(self, user_id: int, grade: int, class_nm: int) -> Embed:
-        await self.mongo.set_user(user_id, grade, class_nm)
+        if await self.mongo.get_user(user_id, grade, class_nm):
+            await self.mongo.set_user(user_id, grade, class_nm)
+        else:
+            await self.mongo.initialize_user(user_id, grade, class_nm)
         return Embed(title="반 정보 저장 완료")
