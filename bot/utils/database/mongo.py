@@ -11,7 +11,7 @@ class Mongo:
         self.__client.close()
 
     async def get_user(self, user_id: int) -> Optional[Dict[str, int]]:
-        return self.__user_class.find_one({"user_id": user_id})
+        return await self.__user_class.find_one({"user_id": user_id})
 
     async def set_user(self, user_id: int, grade: int, class_nm: int) -> None:
         await self.__user_class.update_one(
