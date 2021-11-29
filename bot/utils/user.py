@@ -1,3 +1,5 @@
+from typing import Dict
+
 from discord.embeds import Embed
 from bot.utils.database.mongo import Mongo
 
@@ -5,6 +7,9 @@ from bot.utils.database.mongo import Mongo
 class User:
     def __init__(self, mongo: Mongo) -> None:
         self.mongo = mongo
+
+    async def get_user_class(self, user_id: int) -> Dict[str, int]:
+        return await self.mongo.get_user(user_id)
 
     async def set_class_embed(self, user_id: int, grade: int, class_nm: int) -> Embed:
         if await self.mongo.get_user(user_id):
