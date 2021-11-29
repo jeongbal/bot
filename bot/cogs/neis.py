@@ -35,7 +35,7 @@ class NeisCog(Cog):
 
     @commands.command(name="시간표")
     async def time_table(
-        self, ctx: Context, grade: int, class_nm: int, date: Optional[str]
+        self, ctx: Context, grade: Optional[int], class_nm: Optional[int], date: Optional[str]
     ) -> None:
         """
         해당 날짜의 시간표를 보여줍니다.
