@@ -3,6 +3,7 @@ from discord.ext.commands import Cog
 from discord.ext.commands import Context
 from discord.utils import oauth_url
 from discord.embeds import Embed
+from discord.permissions import Permissions
 
 from bot.bot import JeongBalBot
 from bot.utils.embeds import pleaseWait
@@ -18,7 +19,7 @@ class General(Cog):
         정발고 봇의 초대 링크를 보여줍니다.
         인자값: `..초대`
         """
-        url = oauth_url(self.bot.user.id)
+        url = oauth_url(self.bot.user.id, permissions=Permissions.administrator)
         await ctx.send(embed=Embed(title="정발고 봇 초대 링크", url=url))
 
     @commands.command(name="help")
