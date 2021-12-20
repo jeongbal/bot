@@ -1,4 +1,3 @@
-from typing import Optional
 from glob import glob
 
 from discord.ext.commands import Bot
