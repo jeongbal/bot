@@ -12,3 +12,21 @@
  - 급식 정보
  - 시간표
  - 학사일정
+
+## Setup
+
+| Environment variable | Value             |
+| -------------------- | ----------------- |
+| token                | Discord bot token |
+| neis                 | Neis api token    |
+| mongo                | Mongodb uri       |
+
+```sh
+git clone https://github.com/jeongbal/bot.git
+
+cd bot
+
+python3 -m pip install -r requirements.txt
+
+python3 -m bot
+```
