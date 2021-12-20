@@ -19,7 +19,7 @@ class General(Cog):
         정발고 봇의 초대 링크를 보여줍니다.
         인자값: `..초대`
         """
-        url = oauth_url(self.bot.user.id, permissions=Permissions.administrator)
+        url = oauth_url(self.bot.user.id, permissions=Permissions(8))
         await ctx.send(embed=Embed(title="정발고 봇 초대 링크", url=url))
 
     @commands.command(name="help")
