@@ -8,9 +8,8 @@ https://jeongbal.github.io/bot/
 
 ## 사용 예시
 
-![bab](https://media.discordapp.net/attachments/780589129401761802/923066761291657226/unknown.png)
-
-![time](https://media.discordapp.net/attachments/780589129401761802/923066978502049863/unknown.png)
+<img src="https://media.discordapp.net/attachments/780589129401761802/923066761291657226/unknown.png" width="200"/>
+<img src="https://media.discordapp.net/attachments/780589129401761802/923066978502049863/unknown.png" width="300"/>
 
 ### 명령어 사용 방법
 
