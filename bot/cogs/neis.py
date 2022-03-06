@@ -2,6 +2,8 @@ from typing import Optional
 from discord.ext import commands
 from discord.ext.commands import Cog
 from discord.ext.commands.context import Context
+from discord.message import Message
+from neispy.error import DataNotFound
 
 from bot.bot import JeongBalBot
 from bot.utils.neis import Neis
@@ -14,6 +16,16 @@ class NeisCog(Cog):
         self.bot = bot
         self.neis = Neis(self.bot.neis)
         self.user = User(self.bot.mongo)
+
+    @commands.Cog.listener("on_message")
+    async def onMessageEvent(self, message: Message):
+        if message.content in ["밥", "ㅂ"]:
+            msg = await message.channel.send(embed=pleaseWait)
+            try:
+                embed = await self.neis.meal_embed(None)
+            except DataNotFound:
+                return await message.channel.send("해당하는 데이터를 찾지 못했습니다.", delete_after=5)
+            await msg.edit(embed=embed)
 
     @commands.command(name="밥")
     async def bab(self, ctx: Context, date: Optional[str]) -> None:
