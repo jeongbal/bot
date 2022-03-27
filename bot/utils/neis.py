@@ -21,7 +21,7 @@ class Neis:
     @staticmethod
     def handle_date(date: Optional[str]) -> str:
         if not date:
-            return datetime.now(tz=SEOUL).strftime("%Y%m%d")
+            return (datetime.now(tz=SEOUL) + timedelta(hours=9)).strftime("%Y%m%d")
         if date == "내일":
             return (datetime.now(tz=SEOUL) + timedelta(days=1)).strftime("%Y%m%d")
         elif date == "어제":
